@@ -1,0 +1,14 @@
+import string
+plain string.ascii_uppercase
+cipher = "QWERTYUIOPLKJHGFDSAZXCVBNM"
+mapping = dict(zip(plain, cipher))
+def encrypt_mono(text):
+return ''.join(mapping.get(c, c) for c in
+text.upper())
+def decrypt_mono(text):
+reverse_mapping = {v: k for k, v in mapping.items()}
+return.join(reverse_mapping.get(c, c) for cin text.upper())
+msg = "HELLO"
+enc encrypt_mono(msg)
+print("Encrypted:", enc)
+print("Decrypted:", decrypt_mono(enc))
