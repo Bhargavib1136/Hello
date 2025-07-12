@@ -1,0 +1,13 @@
+def encrypt_caesar (text, key): return.join(chr((ord(c) for c in text.upper()) 65+ key) % 26 + 65)
+
+def decrypt_caesar (cipher, key): return '.join(chr((ord(c) - 65 key) % 2665) for c in cipher)
+
+text = "HELLO"
+
+key = 3
+
+enc encrypt_caesar (text, key)
+
+print("Encrypted:", enc)
+
+print("Decrypted:", decrypt_caesar (enc, key))
