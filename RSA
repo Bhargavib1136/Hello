@@ -1,0 +1,15 @@
+p, q 61, 53 
+n = p * q 
+phi  (p-1)*(q-1)
+e=17
+d = 2753
+
+msg = input("Enter message: ")
+
+enc = [(ord(c) ** e) % n for c in msg]
+
+dec=''.join([chr((c** d) % n) for c in enc])
+
+print("Encrypted:", enc)
+
+print("Decrypted:", dec)
