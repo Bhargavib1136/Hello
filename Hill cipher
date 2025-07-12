@@ -1,0 +1,38 @@
+import numpy as np
+
+def mod_inv(matrix, mod):
+    det = int(round(np.linalg.det(matrix)))
+    det_inv = pow(det % mod, -1, mod)
+    matrix_mod_inv = (det_inv * np.round(det * np.linalg.inv(matrix)).astype(int)) % mod
+    return matrix_mod_inv
+
+def text_to_nums(text):
+    return [ord(c) - 65 for c in text.upper().replace(" ", "")]
+
+def nums_to_text(nums):
+    return ''.join(chr(int(n) + 65) for n in nums)
+
+def encrypt(text, key):
+    while len(text) % 3 != 0:
+        text += 'X'
+    nums = text_to_nums(text)
+    res = []
+    for i in range(0, len(nums), 3):
+        block = np.dot(key, nums[i:i+3]) % 26
+        res.extend(block)
+    return nums_to_text(res)
+
+def decrypt(cipher, key):
+    inv_key = mod_inv(key, 26)
+    nums = text_to_nums(cipher)
+    res = []
+    for i in range(0, len(nums), 3):
+        block = np.dot(inv_key, nums[i:i+3]) % 26
+        res.extend(block)
+    return nums_to_text(res)
+
+key = np.array([[6,24,1],[13,16,10],[20,17,15]])
+text = input("Enter message: ")
+enc = encrypt(text, key)
+print("Encrypted:", enc)
+print("Decrypted:", decrypt(enc, key))
